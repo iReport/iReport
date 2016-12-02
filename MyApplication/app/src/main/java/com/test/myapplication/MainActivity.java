@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         Intent intent = getIntent();
         final TextView textView = (TextView) findViewById(R.id.link_signup);
 
