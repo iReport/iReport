@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">iReport</string>
+    <string name="email">Email: </string>
+    <string name="username">Enter email</string>
+    <string name="password">Enter Password</string>
+    <string name="sign_up">Sign-Up</string>
+
+</resources>
