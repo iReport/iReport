@@ -4,5 +4,6 @@
     <string name="username">Enter email</string>
     <string name="password">Enter Password</string>
     <string name="sign_up">Sign-Up</string>
-
+    <string name="facebook_app_id">216834842093150</string>
+    <string name="fb_login_protocol_scheme">fb216834842093150</string>
 </resources>
