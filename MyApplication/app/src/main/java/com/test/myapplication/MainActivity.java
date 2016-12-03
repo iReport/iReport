@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -83,6 +84,25 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
+
+                    String name = user.getDisplayName();
+                    String email = user.getEmail();
+                    Uri photoUrl = user.getPhotoUrl();
+
+                    // The user's ID, unique to the Firebase project. Do NOT use this value to
+                    // authenticate with your backend server, if you have one. Use
+                    // FirebaseUser.getToken() instead.
+                    String uid = user.getUid();
+
+                    Log.i(TAG, "************************************************************************");
+                    Log.i(TAG, "onAuthStateChanged: email = "+email);
+                    Log.i(TAG, "onAuthStateChanged: name = "+name);
+                    Log.i(TAG, "************************************************************************");
+
+
+
+
+
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     // User is signed out
@@ -146,7 +166,12 @@ public class MainActivity extends AppCompatActivity {
                                     email = object.getString("email");
                                     name = object.getString("name");
 
+                                    Log.i(TAG, "onCompleted: email = "+email);
+                                    Log.i(TAG, "onCompleted: name = "+name);
+
                                     Toast.makeText(MainActivity.this, "email = "+ email, Toast.LENGTH_SHORT).show();
+
+
 
 //                                    fbLoginButton.setVisibility(View.INVISIBLE);
 
@@ -238,36 +263,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
-//    @Override
-//    public View onCreateView(
-//            LayoutInflater inflater,
-//            ViewGroup container,
-//            Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.splash, container, false);
-//
-//        loginButton = (LoginButton) view.findViewById(R.id.login_button);
-//        loginButton.setReadPermissions("email");
-//        // If using in a fragment
-//        loginButton.setFragment(this);
-//        // Other app specific specialization
-//
-//        // Callback registration
-//        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-//            @Override
-//            public void onSuccess(LoginResult loginResult) {
-//                // App code
-//            }
-//
-//            @Override
-//            public void onCancel() {
-//                // App code
-//            }
-//
-//            @Override
-//            public void onError(FacebookException exception) {
-//                // App code
-//            }
-//        });
-//    }
