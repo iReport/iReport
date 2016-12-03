@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">My Application</string>
+    <!--<string name="service_not_available">service_not_available</string>
+    <string name="invalid_lat_long_used">invalid_lat_long_used</string>
+    <string name="no_address_found">no_address_found</string>
+    <string name="address_found">address_found</string>
+    <string name="no_geocoder_available">no_geocoder_available</string>&ndash;&gt;
+-->
+    <string name="location_services_lat">location_services_lat</string>
+    <string name="location_services_long">location_services_long</string>
+
+
+
+
+
+
+
+
 </resources>
