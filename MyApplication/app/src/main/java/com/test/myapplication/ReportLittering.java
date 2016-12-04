@@ -41,7 +41,7 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
     public Location lastLocation;
     public String latitude, longitude;
     private GoogleApiClient googleApiClient;
-    TextView streetAddress;
+    TextView lat, longi, street;
 
 
     @Override
@@ -53,6 +53,11 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
         googleApiClientSetUp();
         dispatchTakePictureIntent();
 
+        lat = (TextView) findViewById(R.id.lat);
+        longi = (TextView) findViewById(R.id.longi);
+        street = (TextView) findViewById(R.id.street);
+        imageView = (ImageView) findViewById(R.id.imageView2);
+
 
     }
 
@@ -61,7 +66,6 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView = (ImageView) findViewById(R.id.imageView);
             imageView.setImageBitmap(imageBitmap);
         }
     }
@@ -144,8 +148,13 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
             String country = addresses.get(0).getCountryName();
             String postalCode = addresses.get(0).getPostalCode();
             String knownName = addresses.get(0).getFeatureName();
-            String street = addresses.get(0).getLocality();
-            String abc = addresses.get(0).getLocality();
+            //String street = addresses.get(0).getLocality();
+            String getLocality = addresses.get(0).getLocality();
+            String getPremises = addresses.get(0).getPremises();
+            String getSubAdminArea =addresses.get(0).getSubAdminArea();
+            String getSubLocality =addresses.get(0).getSubLocality();
+            String getSubThoroughfare =addresses.get(0).getSubThoroughfare();
+            String getThoroughfare =addresses.get(0).getThoroughfare();
 
             Log.i(TAG, "saveLocation: address = "+address);
             Log.i(TAG, "saveLocation: city = "+city);
@@ -153,9 +162,33 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
             Log.i(TAG, "saveLocation: street = "+street);
             Log.i(TAG, "saveLocation: postalCode = "+postalCode);
             Log.i(TAG, "saveLocation: knownName = "+knownName);
+            Log.i(TAG, "saveLocation: country = "+country);
+            Log.i(TAG, "saveLocation: getSubAdminArea = "+getSubAdminArea);
+            Log.i(TAG, "saveLocation: getSubLocality = "+getSubLocality);
+            Log.i(TAG, "saveLocation: getSubThoroughfare = "+getSubThoroughfare);
+            Log.i(TAG, "saveLocation: getThoroughfare = "+getThoroughfare);
+            Log.i(TAG, "saveLocation: getLocality = "+getLocality);
+            Log.i(TAG, "saveLocation: getPremises = "+getPremises);
 
-            streetAddress = (TextView) findViewById(R.id.text_location);
-            streetAddress.setText(knownName);
+            lat.setText(latitude);
+            longi.setText(longitude);
+
+            if (getSubThoroughfare == null)
+            {
+                street.setText(getThoroughfare);
+            }
+            else
+            {
+                street.setText(getSubThoroughfare +" "+ getThoroughfare);
+            }
+
+
+
+
+
+
+            /*streetAddress = (TextView) findViewById(R.id.text_location);
+            streetAddress.setText(knownName);*/
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = sharedPreferences.edit();
