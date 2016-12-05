@@ -170,14 +170,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
-                
+
                 if (email.equals("")) {
 
                     editTextEmail.setError("This field is required!");
 
                     final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("Alert!")
-                            .setMessage("Please enter a valid Email Address!")
+                            .setMessage("Please enter a valid Email Address")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     editTextPassword.setError("This field is required!");
                     final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("Alert!")
-                            .setMessage("Please enter a Password!")
+                            .setMessage("Please enter a Password")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {

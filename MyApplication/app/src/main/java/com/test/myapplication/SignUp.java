@@ -43,7 +43,7 @@ public class SignUp extends AppCompatActivity {
                     editTextEmail.setError("This field is required!");
                     final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                     builder.setTitle("Alert!")
-                            .setMessage("Please enter a valid Email address!")
+                            .setMessage("Please enter a valid Email address")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -57,7 +57,7 @@ public class SignUp extends AppCompatActivity {
                     editTextPassword.setError("This field is required!");
                     final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                     builder.setTitle("Alert!")
-                            .setMessage("Please enter a Password!")
+                            .setMessage("Please enter a Password")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
