@@ -10,8 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,8 +60,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     Button signOutButton;
     Button disconnectButton;
     Button signOutButtonFb;
+    Button loginButton;
 
     TextView textViewSignUp;
+
+    EditText editTextEmail;
+    EditText editTextPassword;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -152,6 +159,33 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
+            }
+        });
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                String email = editTextEmail.getText().toString();
+                String password = editTextPassword.getText().toString();
+
+
+                if (email.equals("")) {
+
+                    editTextEmail.setError("This field is required!");
+
+                } else if (password.equals("")) {
+
+                    editTextPassword.setError("This field is required!");
+
+                } else {
+
+                    Log.i(TAG, "onClick: email = " + email);
+                    Log.i(TAG, "onClick: password = " + password);
+
+                    Toast.makeText(MainActivity.this, "password: " + password, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -333,11 +367,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private void updateUI(boolean signedIn) {
         if (signedIn) {
-            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+            googleSignInButton.setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
 
-            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+            googleSignInButton.setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
     }
@@ -361,14 +395,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private void initializeViews() {
 
-        googleSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
+        googleSignInButton = (SignInButton) findViewById(R.id.sign_in_button_google);
         googleSignInButton.setSize(SignInButton.SIZE_STANDARD);
         signOutButton = (Button) findViewById(R.id.sign_out_button);
         disconnectButton = (Button) findViewById(R.id.disconnect_button);
-        fbLoginButton = (LoginButton) findViewById(R.id.login_button);
+        fbLoginButton = (LoginButton) findViewById(R.id.login_button_fb);
         signOutButtonFb = (Button) findViewById(R.id.sign_out_button_fb);
+        loginButton = (Button) findViewById(R.id.btn_login);
 
-
+        editTextEmail = (EditText) findViewById(R.id.input_email);
+        editTextPassword = (EditText) findViewById(R.id.input_password);
 
         textViewSignUp = (TextView) findViewById(R.id.link_signup);
 
