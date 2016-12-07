@@ -213,6 +213,7 @@
         android:layout_below="@+id/textView19"
         android:layout_alignLeft="@+id/textView12"
         android:layout_alignStart="@+id/textView12"
+        android:id="@+id/size"
         android:layout_marginLeft="6dp"
         android:layout_marginStart="6dp">
     <RadioButton

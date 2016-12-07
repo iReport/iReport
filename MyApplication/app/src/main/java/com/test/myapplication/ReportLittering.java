@@ -25,6 +25,8 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -44,6 +46,9 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
     private GoogleApiClient googleApiClient;
     TextView lat, longi, street;
 
+    RadioGroup radioGroupSeverityLevel, radioGroupSize;
+    RadioButton radioButtonSeverityLevel, radioButtonSize;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,8 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
         longi = (TextView) findViewById(R.id.longi);
         street = (TextView) findViewById(R.id.street);
         imageView = (ImageView) findViewById(R.id.imageView2);
+
+        addListenerOnButton();
 
 
     }
@@ -225,5 +232,18 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
                 .addConnectionCallbacks(this)
                 .addApi(LocationServices.API)
                 .build();
+    }
+
+    public void addListenerOnButton() {
+
+        radioGroupSeverityLevel = (RadioGroup) findViewById(R.id.severityLevel);
+        radioGroupSize = (RadioGroup) findViewById(R.id.size);
+        int selectedRadioSeverityLevel = radioGroupSeverityLevel.getCheckedRadioButtonId();
+        int selectedRadioSize = radioGroupSize.getCheckedRadioButtonId();
+        radioButtonSeverityLevel = (RadioButton) findViewById(selectedRadioSeverityLevel);
+        radioButtonSize = (RadioButton) findViewById(selectedRadioSize);
+        Log.i(TAG, "saveLocation: Severity Level = "+radioButtonSeverityLevel);
+        Log.i(TAG, "saveLocation: Size = "+radioButtonSize);
+
     }
 }
