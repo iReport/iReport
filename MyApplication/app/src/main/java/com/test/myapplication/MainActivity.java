@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     EditText editTextEmail;
     EditText editTextPassword;
 
+    String fb_email;
+    String gmail;
+
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 if (firebaseUser != null) {
 
                     String name = firebaseUser.getDisplayName();
-                    String email = firebaseUser.getEmail();
+                    fb_email = firebaseUser.getEmail();
                     Uri photoUrl = firebaseUser.getPhotoUrl();
 
                     // The user's ID, unique to the Firebase project. Do NOT use this value to
@@ -109,10 +112,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Toast.makeText(MainActivity.this, "Logged in via Facebook as: "+firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
 
                     Log.i(TAG, "************************************************************************");
-                    Log.i(TAG, "onAuthStateChanged: fb email = "+email);
-                    Log.i(TAG, "onAuthStateChanged: fb name = "+name);
+                    Log.i(TAG, "onAuthStateChanged: fb email = "+ fb_email);
+                    Log.i(TAG, "onAuthStateChanged: fb name = "+ name);
                     Log.i(TAG, "************************************************************************");
 
+                    Intent intent = new Intent(MainActivity.this,Resident_features.class);
+                    intent.putExtra("login_fb",fb_email);
+                    startActivity(intent);
 
                 } else {
 
@@ -212,7 +218,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Toast.makeText(MainActivity.this, "password: " + password, Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(MainActivity.this,Resident_features.class);
-                    intent
+                    intent.putExtra("login",email);
+                    startActivity(intent);
 
                 }
             }
@@ -223,6 +230,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onClick(View view) {
                 signInGoogle();
+
+
+
+
 
             }
         });
@@ -350,10 +361,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
                 // google sign in successful !
 
+                gmail=googleAcc.getEmail();
+
                 Log.i(TAG, "handleGoogleSignInResult: gmail display name  = " + googleAcc.getDisplayName());
                 Log.i(TAG, "handleGoogleSignInResult: gmail = "+ googleAcc.getEmail());
 
                 Toast.makeText(MainActivity.this, "Signed in using google as: "+ googleAcc.getEmail(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this,Resident_features.class);
+                intent.putExtra("login_gmail",gmail);
+                startActivity(intent);
 
             }
 

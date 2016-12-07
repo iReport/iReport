@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 /**
@@ -14,12 +16,56 @@ import android.widget.Toast;
 
 public class Resident_features extends AppCompatActivity {
 
+    String login_email;
+    String fb_email;
+    String gmail;
+
+    Button buttonReport;
+    Button buttonMyReports;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resident_features);
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar2);
         //setSupportActionBar(myToolbar);
+
+
+
+        Intent intent = getIntent();
+
+        initializeViews();
+
+        buttonReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Resident_features.this,ReportLittering.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+//        if(intent!=null) {
+//            if(!(intent.getStringExtra("login").equals(""))) {
+//                login_email = intent.getStringExtra("login");
+//
+//
+//            } else if (!(intent.getStringExtra("login_fb").equals(""))) {
+//                fb_email = intent.getStringExtra("login_fb");
+//
+//
+//            }  else if (!(intent.getStringExtra("login_gmail").equals(""))) {
+//                fb_email = intent.getStringExtra("login_gmail");
+//
+//
+//            }
+//        }
+
+
+
+
+
     }
 
     @Override
@@ -46,5 +92,11 @@ public class Resident_features extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initializeViews() {
+        buttonMyReports = (Button) findViewById(R.id.button_myreports);
+        buttonReport = (Button) findViewById(R.id.button_report);
+
     }
 }

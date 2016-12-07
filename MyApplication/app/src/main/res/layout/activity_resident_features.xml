@@ -21,7 +21,9 @@
             android:layout_width="wrap_content"
             android:id="@+id/textView1"
             android:layout_height="wrap_content"
-            android:text=" " ></TextView>
+            android:text=" " >
+
+        </TextView>
         <Button
             android:layout_marginTop="5dip"
             android:layout_centerHorizontal="true"
@@ -29,7 +31,9 @@
             android:layout_below="@id/textView1"
             android:id="@+id/button_myreports"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Button>
+            android:layout_height="wrap_content">
+
+        </Button>
 
         <Button
             android:text="Report Littering"
