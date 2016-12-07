@@ -210,6 +210,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Log.i(TAG, "onClick: password = " + password);
 
                     Toast.makeText(MainActivity.this, "password: " + password, Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(MainActivity.this,Resident_features.class);
+                    intent
+
                 }
             }
         });
