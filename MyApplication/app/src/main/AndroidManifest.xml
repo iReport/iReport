@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Resident_features">
+        <activity android:name=".HomePage">
             <!--intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
@@ -66,10 +66,10 @@
         </activity>
 
         <activity android:name=".Resident_features_settings">
-            android:parentActivityName="com.test.myapplication.Resident_features>
+            android:parentActivityName="com.test.myapplication.HomePage>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.test.myapplication.Resident_features" />
+                android:value=".HomePage" />
             </activity>
 
         <meta-data

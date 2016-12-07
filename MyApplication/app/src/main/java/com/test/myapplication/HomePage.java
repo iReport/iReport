@@ -3,8 +3,6 @@ package com.test.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by Asmita Deshpande on 12/5/16.
  */
 
-public class Resident_features extends AppCompatActivity {
+public class HomePage extends AppCompatActivity {
 
     private static final String TAG = "ResidentFeatures";
 
@@ -45,40 +43,39 @@ public class Resident_features extends AppCompatActivity {
         buttonReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Resident_features.this,ReportLittering.class);
+                Intent intent = new Intent(HomePage.this,ReportLittering.class);
                 startActivity(intent);
             }
         });
 
-        Log.i(TAG, "onCreate: hahhahahahah");
-        
 
 
 
-        if(intent!=null) {
 
-            Log.i(TAG, "onCreate: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            if(!(intent.getStringExtra("login").equals(""))) {
-                login_email = intent.getStringExtra("login");
-                Log.i(TAG, "onCreate: login");
-                Log.i(TAG, "onCreate: "+login_email);
-
-
-            } else if (!(intent.getStringExtra("login_fb").equals(""))) {
-                fb_email = intent.getStringExtra("login_fb");
-
-                Log.i(TAG, "onCreate: fb");
-
-
-            }  else if (!(intent.getStringExtra("login_gmail").equals(""))) {
-                gmail = intent.getStringExtra("login_gmail");
-
-                Log.i(TAG, "onCreate: gmail");
-
-                Log.i(TAG, "onCreate: "+gmail);
-
-            }
-        }
+//        if(intent!=null) {
+//
+//            Log.i(TAG, "onCreate: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//            if(!(intent.getStringExtra("login").equals(""))) {
+//                login_email = intent.getStringExtra("login");
+//                Log.i(TAG, "onCreate: login");
+//                Log.i(TAG, "onCreate: "+login_email);
+//
+//
+//            } else if (!(intent.getStringExtra("login_fb").equals(""))) {
+//                fb_email = intent.getStringExtra("login_fb");
+//
+//                Log.i(TAG, "onCreate: fb");
+//
+//
+//            }  else if (!(intent.getStringExtra("login_gmail").equals(""))) {
+//                gmail = intent.getStringExtra("login_gmail");
+//
+//                Log.i(TAG, "onCreate: gmail");
+//
+//                Log.i(TAG, "onCreate: "+gmail);
+//
+//            }
+//        }
 
 
 

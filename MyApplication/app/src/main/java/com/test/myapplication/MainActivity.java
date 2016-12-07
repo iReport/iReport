@@ -12,9 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -116,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Log.i(TAG, "onAuthStateChanged: fb name = "+ name);
                     Log.i(TAG, "************************************************************************");
 
-                    Intent intent = new Intent(MainActivity.this,Resident_features.class);
+                    Intent intent = new Intent(MainActivity.this,HomePage.class);
                     intent.putExtra("login_fb",fb_email);
                     startActivity(intent);
 
@@ -217,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
                     Toast.makeText(MainActivity.this, "password: " + password, Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(MainActivity.this,Resident_features.class);
+                    Intent intent = new Intent(MainActivity.this,HomePage.class);
                     intent.putExtra("login",email);
                     startActivity(intent);
 
@@ -368,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
                 Toast.makeText(MainActivity.this, "Signed in using google as: "+ googleAcc.getEmail(), Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(MainActivity.this,Resident_features.class);
+                Intent intent = new Intent(MainActivity.this,HomePage.class);
                 intent.putExtra("login_gmail",gmail);
                 startActivity(intent);
 
