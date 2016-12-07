@@ -51,7 +51,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "MainActivity";
     private static final int REQUEST_SIGNUP = 0;
     private static final int RC_SIGN_IN_GOOGLE = 9001;
 
