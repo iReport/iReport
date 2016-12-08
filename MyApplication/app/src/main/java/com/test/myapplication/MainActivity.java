@@ -2,10 +2,12 @@ package com.test.myapplication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Log.i(TAG, "************************************************************************");
 
                     Intent intent = new Intent(MainActivity.this,HomePage.class);
-                    intent.putExtra("login_fb",fb_email);
+                    intent.putExtra("login",fb_email);
                     startActivity(intent);
 
                 } else {
@@ -364,11 +366,26 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.i(TAG, "handleGoogleSignInResult: gmail display name  = " + googleAcc.getDisplayName());
                 Log.i(TAG, "handleGoogleSignInResult: gmail = "+ googleAcc.getEmail());
 
+
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("gmail_address",gmail);
+                editor.commit();
+
+//                editor.putString(getString(R.string.location_services_lat),latitude);
+//                editor.putString(getString(R.string.location_services_long),longitude);
+//                editor.commit();
+
                 Toast.makeText(MainActivity.this, "Signed in using google as: "+ googleAcc.getEmail(), Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(MainActivity.this,HomePage.class);
-                intent.putExtra("login_gmail",gmail);
+                Intent intent = new Intent(this,HomePage.class);
                 startActivity(intent);
+
+
+
+
+//                intent.putExtra("login_gmail",gmail);
+//                startActivity(intent);
 
             }
 

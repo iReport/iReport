@@ -1,8 +1,11 @@
 package com.test.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
 
-    private static final String TAG = "ResidentFeatures";
+    private static final String TAG = "HomePage";
 
 
     String login_email;
@@ -38,6 +41,12 @@ public class HomePage extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        login_email = sharedPreferences.getString("gmail_address",null);
+
+
+        Log.i(TAG, "onCreate: ");
+
         initializeViews();
 
         buttonReport.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +56,44 @@ public class HomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Log.i(TAG, "onCreate: HOMEPAGE");
+
+
+
+
+//        lat = sharedPreferences.getString(getString(R.string.location_services_lat),null);
+//        longi = sharedPreferences.getString(getString(R.string.location_services_long),null);
+
+
+
+//        if(intent.getStringExtra("login_gmail")!= null) {
+//            login_email = intent.getStringExtra("login_gmail");
+//        }
+
+
+
+//        Bundle bundle = getIntent().getExtras();
+//
+//        if(bundle != null) {
+//
+//            Log.i(TAG, "onCreate: bundle = " + bundle);
+//
+//            login_email = bundle.getString("login_gmail");
+//
+//            Log.i(TAG, "onCreate: email == " + login_email);
+//        }
+
+
+        
+//        if(intent.getStringExtra("login")!=null) {
+//            login_email = intent.getStringExtra("login");
+//
+//            Log.i(TAG, "onCreate: ~~~~~~~~~~~~~~~~~~~~~");
+//
+//            Log.i(TAG, "onCreate: email = "+login_email);
+//
+//        }
 
 
 
@@ -102,9 +149,11 @@ public class HomePage extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_name) {
-            Toast.makeText(this, "User profile clicked ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User profile clicked: "+login_email, Toast.LENGTH_SHORT).show();
 
             Intent i = new Intent(getApplicationContext(),Resident_features_settings.class);
+
+            i.putExtra("email",login_email);
             startActivity(i);
             return true;
         }
