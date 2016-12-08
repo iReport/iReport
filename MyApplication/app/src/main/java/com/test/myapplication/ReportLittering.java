@@ -26,6 +26,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.provider.FirebaseInitProvider;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import android.Manifest;
 
@@ -44,8 +49,10 @@ import android.widget.TextView;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class ReportLittering extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -75,6 +82,9 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
     private FirebaseAuth firebaseAuth;
 
 
+//    private DatabaseReference mDatabase;
+//    private FirebaseAuth firebaseAuth;
+
     String latString;
     String longString;
     String DescriptionString;
@@ -86,7 +96,6 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
     List<Report> list;
 
     Bitmap bitmap;
-
 
 
 
@@ -113,6 +122,8 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
 
         firebaseAuth=FirebaseAuth.getInstance();
         litterdatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth=FirebaseAuth.getInstance();
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         if(sharedPreferences.getString("gmail_address",null)!=null) {
             gmail = sharedPreferences.getString("gmail_address",null);
@@ -143,6 +154,7 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
 
 
       list = new ArrayList<>();
+        
 
         lat = (TextView) findViewById(R.id.lat);
         longi = (TextView) findViewById(R.id.longi);
@@ -174,6 +186,10 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
 
 //                String b64Image = Base64.encodeToString(b, Base64.DEFAULT);
 
+//                Report report = new Report(lat.getText().toString(),longi.getText().toString(),street.getText().toString(),
+//                        imageView.getDrawable(),editTextDescription.getText().toString());
+
+//                list.add(report);
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
@@ -206,6 +222,16 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
                 //litterdatabase.push().setValue(report1);
 
                 litterdatabase.push().setValue(report2);
+//                public Report(String longitude, String latitude, String street, String description, Drawable image) {
+
+
+
+//                    Report report = new Report(longi.getText().toString(),lat.getText().toString(),
+//                        street.getText().toString(),b64Image,editTextDescription.getText().toString());
+//
+//                list.add(report);
+
+
 
 
 
@@ -225,6 +251,10 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
 
 
 //                Log.i(TAG, "onClick: latitude = "+lat.getText().toString());
+//                mDatabase.push().setValue(report1);
+
+
+//                Log.i(TAG, "onClick: latitude = "+lat.getText().toString());
 
 
 
@@ -240,6 +270,7 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
                 editor.commit();
 
                 //finish();
+
 
 
 

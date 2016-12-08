@@ -21,7 +21,6 @@ public class Report {
     public  String currentstatus;
     public  String severity;
     public String img;
-
     public  Drawable image;
     public  String size;
     public  String time;
@@ -89,6 +88,36 @@ public class Report {
     }
 
 
+
+    public Report(String longitude, String latitude, String street, String description, Drawable image) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.street = street;
+        this.description = description;
+        this.image = image;
+    }
+
+    public Report(String longitude, String latitude, String street, String img, String description) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.street = street;
+        this.img = img;
+        this.description = description;
+    }
+
+//    public Report(String longitude, String latitude, String street, String currentstatus, String severity, Drawable image, String size, String time, String date, String description, String emailId) {
+//        this.longitude = longitude;
+//        this.latitude = latitude;
+//        this.street = street;
+//        this.currentstatus = currentstatus;
+//        this.severity = severity;
+//        this.image = image;
+//        this.size = size;
+//        this.time = time;
+//        this.date = date;
+//        this.description = description;
+//        this.emailId = emailId;
+//    }
 
     public Report() {
     }

@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
+
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,8 +34,9 @@ public class DummyContent {
     static {
         // Add 3 sample items.
         addItem(new DummyItem("1", "12/4/2016 4:00pm", "Can discarded on the way side", "http://i68.tinypic.com/2zf52l3.jpg","37.336876"," -121.881908","79 South 7th Street","Minor","Small","still_there"));
-        addItem(new DummyItem("2", "12/3/2016 6:00pm", "Trash on the way side", "http://i63.tinypic.com/20gwsy.jpg","37.336534","-121.884468","220-224 East San Fernando Street","Medium","Medium","removal_claimed"));
-        addItem(new DummyItem("3", "12/2/2016 7:00pm", "Bags on the way side", "http://i67.tinypic.com/9us01u.png","37.334917","-121.885203","100-198 South 4th Street","Severe","Large","removal_claimed"));
+
+       // addItem(new DummyItem("2", "12/3/2016 6:00pm", "Trash on the way side", "http://i63.tinypic.com/20gwsy.jpg","37.336534","-121.884468","220-224 East San Fernando Street","Medium","Medium","removal_claimed"));
+       // addItem(new DummyItem("3", "12/2/2016 7:00pm", "Bags on the way side", "http://i67.tinypic.com/9us01u.png","37.334917","-121.885203","100-198 South 4th Street","Severe","Large","removal_claimed"));
     }
 
     private static void addItem(DummyItem item) {
