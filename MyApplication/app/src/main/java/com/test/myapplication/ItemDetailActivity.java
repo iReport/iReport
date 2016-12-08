@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RadioButton;
+import com.test.myapplication.DummyContent;
 
 
 /**
@@ -18,11 +21,20 @@ import android.view.MenuItem;
  * more than a {@link ItemDetailFragment}.
  */
 public class ItemDetailActivity extends AppCompatActivity {
-
+    RadioButton StillThere;
+    RadioButton RemovalClaimed;
+    RadioButton RemovalConfirmed;
+    private DummyContent.DummyItem mItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
+        //Status selection
+
+        StillThere = (RadioButton)findViewById(R.id.radioButton5);
+        RemovalClaimed = (RadioButton)findViewById(R.id.radioButton6);
+        RemovalConfirmed = (RadioButton)findViewById(R.id.radioButton8);
+        //
 
         // Show the Up button in the action bar.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,7 +58,33 @@ public class ItemDetailActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.item_detail_container, fragment).commit();
         }
     }
+    public void onRemovalConfirm(View view) {
+        // Is the view now checked?
+        boolean checked = ((RadioButton) view).isChecked();
 
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.radioButton8:
+                if (checked)
+                {
+                    StillThere.setChecked(false);
+                    RemovalClaimed.setChecked(false);
+
+                }
+                else if (mItem.Status=="still_there")
+                {
+                    StillThere.setChecked(true);
+                    RemovalClaimed.setChecked(false);
+                }
+                else if (mItem.Status=="removal_claimed")
+                {
+                    StillThere.setChecked(false);
+                    RemovalClaimed.setChecked(true);
+                }
+                break;
+
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

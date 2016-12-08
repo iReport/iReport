@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,12 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.test.myapplication.DummyContent;
 
 public class ItemListFragment extends ListFragment {
-
-    //Firebase Initialize
-    private DatabaseReference mDatabase;
-    private String mUserId;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -73,17 +68,7 @@ public class ItemListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),android.R.layout.simple_list_item_activated_1, android.R.id.text1, DummyContent.ITEMS));
 
-        //Initialize Firebase Auth and Database Reference
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        if (mFirebaseUser == null) {
-            // Not logged in, launch the Log In activity
-           // MainActivity();
-        } else {
-            mUserId = mFirebaseUser.getUid();
-        }
-        }
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -91,7 +76,6 @@ public class ItemListFragment extends ListFragment {
         // Restore the previously serialized activated item position.
         if (savedInstanceState != null && savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
             setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
-
         }
     }
 

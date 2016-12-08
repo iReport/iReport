@@ -1,14 +1,30 @@
 package com.test.myapplication;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 import com.test.myapplication.DummyContent;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.test.myapplication.R.id.imageView;
 
 /**
  * A fragment representing a single Item detail screen.
@@ -21,6 +37,13 @@ public class ItemDetailFragment extends Fragment {
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
+    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    public String latReport = sharedPreferences.getString("lat_string",null);
+    public String longiReport = sharedPreferences.getString("long_string",null);
+    public String streetReport = sharedPreferences.getString("street_string",null);
+    public String descriptionReport = sharedPreferences.getString("description_string",null);
+    public String imgReport = sharedPreferences.getString("img_string",null);
+
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
@@ -39,6 +62,16 @@ public class ItemDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+//        editor.putString("lat_string",lat.getText().toString());
+//        editor.putString("long_string",longi.getText().toString());
+//        editor.putString("street_string",street.getText().toString());
+//        editor.putString("description_string",editTextDescription.getText().toString());
+//        editor.putString("img_string",b64Image);
+
+
+
+
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
@@ -47,13 +80,30 @@ public class ItemDetailFragment extends Fragment {
         }
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.item_list_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_item_detail, container, false);
         // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.status)).setText(mItem.meaning);
-        }
+      //  if (mItem != null) {
+            ((TextView) rootView.findViewById(R.id.textView7)).setText("12/08/2016");
+            ((TextView) rootView.findViewById(R.id.item_detail)).setText(descriptionReport);
+            ((TextView) rootView.findViewById(R.id.textView13)).setText(latReport);
+            ((TextView) rootView.findViewById(R.id.textView17)).setText(longiReport);
+            ((TextView) rootView.findViewById(R.id.textView22)).setText(streetReport);
+            ((TextView) rootView.findViewById(R.id.textView24)).setText("Medium");
+            ((TextView) rootView.findViewById(R.id.textView26)).setText("Medium");
+
+       // byte[] decodedimg = Base64.decode(imgReport,Base64.DEFAULT);
+       // Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedimg, 0, imgReport.length());
+       // ((ImageView) rootView.findViewById(R.id.imageView)).setImageBitmap(decodedByte);
+
+        //bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
+
+
+        //     Picasso.with(getActivity().getApplicationContext()).load(mItem.imageurl).into((ImageView) rootView.findViewById(R.id.imageView));
+      //  }
         return rootView;
     }
 }

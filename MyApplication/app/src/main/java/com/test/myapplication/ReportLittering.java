@@ -2,12 +2,18 @@ package com.test.myapplication;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Geocoder;
 import android.location.Location;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 
@@ -15,6 +21,14 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import android.Manifest;
 
 import android.content.SharedPreferences;
@@ -29,9 +43,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class ReportLittering extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -46,8 +64,31 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
     private GoogleApiClient googleApiClient;
     TextView lat, longi, street;
 
+    EditText editTextDescription;
+
     RadioGroup radioGroupSeverityLevel, radioGroupSize;
     RadioButton radioButtonSeverityLevel, radioButtonSize;
+
+    Button buttonSubmit;
+
+    String login_email;
+    String fb_email;
+    String gmail;
+
+    private DatabaseReference mDatabase;
+    private FirebaseAuth firebaseAuth;
+
+    String latString;
+    String longString;
+    String DescriptionString;
+    String streetAddressString;
+    Drawable imageDrawable;
+    String sizeString;
+    String severityString;
+
+    List<Report> list;
+
+    Bitmap bitmap;
 
 
     @Override
@@ -56,15 +97,136 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_littering);
 
+
+
+//-----
         googleApiClientSetUp();
         dispatchTakePictureIntent();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor;
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("lat_string",gmail);
+//        editor.commit()
+
+        firebaseAuth=FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        if(sharedPreferences.getString("gmail_address",null)!=null) {
+            gmail = sharedPreferences.getString("gmail_address",null);
+//            editTextScreenName.setText("");
+
+
+//            editTextScreenName.setText(gmail);
+
+
+        } else if(sharedPreferences.getString("fb_address",null)!=null) {
+            fb_email = sharedPreferences.getString("fb_address",null);
+//            editTextScreenName.setText("");
+//
+//            editTextScreenName.setText(fb_email);
+
+
+        } else if(sharedPreferences.getString("login_address",null)!=null) {
+            DatabaseReference myRef;
+            login_email = sharedPreferences.getString("login_address",null);
+//            editTextScreenName.setText("");
+//
+//            editTextScreenName.setText(login_email);
+
+            // myRef= database.getReference("users").child("email");
+            //myRef.setValue(login_email);
+
+        }
+
+
+        list = new ArrayList<>();
 
         lat = (TextView) findViewById(R.id.lat);
         longi = (TextView) findViewById(R.id.longi);
         street = (TextView) findViewById(R.id.street);
         imageView = (ImageView) findViewById(R.id.imageView2);
+        editTextDescription = (EditText) findViewById(R.id.editText);
+        buttonSubmit = (Button) findViewById(R.id.button4);
 
-        addListenerOnButton();
+
+
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                addListenerOnButton();
+
+//                imageView.getDrawable();
+
+//                Report report = new Report(lat.getText().toString(),longi.getText().toString(),street.getText().toString(),
+//                        imageView.getDrawable(),editTextDescription.getText().toString());
+
+//                list.add(report);
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream); // 'bitmap' is the image returned
+                byte[] b = stream.toByteArray();
+
+                String b64Image = Base64.encodeToString(b, Base64.DEFAULT);
+
+//                public Report(String longitude, String latitude, String street, String description, Drawable image) {
+
+
+
+                    Report report = new Report(longi.getText().toString(),lat.getText().toString(),
+                        street.getText().toString(),b64Image,editTextDescription.getText().toString());
+
+                list.add(report);
+
+
+
+
+
+//                public Report(String longitude, String latitude, String street, String currentstatus, String severity, String image, String size, String time, String date, String description, List<User> user, String emailId) {
+
+
+
+//                    Report report = new Report(longi.getText().toString(),lat.getText().toString(),
+//                        street.getText().toString(),"Not Handled","medium"/*radioButtonSeverityLevel.getText().toString()*/,imageView.getDrawable(),"small"/*radioButtonSize.getText().toString()*/,"time","date",
+//                            editTextDescription.getText().toString(),gmail);
+
+//                User person = new User(firstname,lastname,editTextScreenName.getText().toString(),null,address);
+//                FirebaseUser user= firebaseAuth.getCurrentUser();
+//                mDatabase.child(user.getUid()).setValue(person);
+
+//                mDatabase.push().setValue(report1);
+
+
+                Log.i(TAG, "onClick: latitude = "+lat.getText().toString());
+
+
+
+
+
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("lat_string",lat.getText().toString());
+                editor.putString("long_string",longi.getText().toString());
+                editor.putString("street_string",street.getText().toString());
+                editor.putString("description_string",editTextDescription.getText().toString());
+                editor.putString("img_string",b64Image);
+                editor.commit();
+
+                finish();
+
+
+
+
+
+
+
+            }
+        });
+
+
+
 
 
     }
@@ -107,7 +269,9 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
                 saveLocation();
 
             } else {
+
                 // permission denied !
+
             }
         }
     }
