@@ -42,7 +42,27 @@ public class HomePage extends AppCompatActivity {
         Intent intent = getIntent();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        login_email = sharedPreferences.getString("gmail_address",null);
+//        gmail = sharedPreferences.getString("gmail_address",null);
+//        fb_email = sharedPreferences.getString("fb_address",null);
+//        login_email = sharedPreferences.getString("login_address",null);
+
+
+        if(sharedPreferences.getString("gmail_address",null)!=null) {
+            gmail = sharedPreferences.getString("gmail_address",null);
+//            editTextScreenName.setText(gmail);
+
+
+        } else if(sharedPreferences.getString("fb_address",null)!=null) {
+            fb_email = sharedPreferences.getString("fb_address",null);
+//            editTextScreenName.setText(fb_email);
+
+
+        } else if(sharedPreferences.getString("login_address",null)!=null) {
+            login_email = sharedPreferences.getString("login_address",null);
+//            editTextScreenName.setText(login_email);
+
+        }
+
 
 
         Log.i(TAG, "onCreate: ");
@@ -149,12 +169,11 @@ public class HomePage extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_name) {
-            Toast.makeText(this, "User profile clicked: "+login_email, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "User profile clicked: "+login_email, Toast.LENGTH_SHORT).show();
 
             Intent i = new Intent(getApplicationContext(),Resident_features_settings.class);
-
-            i.putExtra("email",login_email);
             startActivity(i);
+
             return true;
         }
 

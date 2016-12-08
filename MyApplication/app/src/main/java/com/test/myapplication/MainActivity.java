@@ -116,8 +116,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Log.i(TAG, "onAuthStateChanged: fb name = "+ name);
                     Log.i(TAG, "************************************************************************");
 
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("fb_address",fb_email);
+                    editor.commit();
+
                     Intent intent = new Intent(MainActivity.this,HomePage.class);
-                    intent.putExtra("login",fb_email);
                     startActivity(intent);
 
                 } else {
@@ -216,6 +220,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Log.i(TAG, "onClick: password = " + password);
 
                     Toast.makeText(MainActivity.this, "password: " + password, Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("login_address",email);
+                    editor.commit();
 
                     Intent intent = new Intent(MainActivity.this,HomePage.class);
                     intent.putExtra("login",email);

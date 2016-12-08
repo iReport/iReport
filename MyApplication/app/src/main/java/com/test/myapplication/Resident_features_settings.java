@@ -1,7 +1,9 @@
 package com.test.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,8 +29,11 @@ public class Resident_features_settings extends AppCompatActivity {
     CheckBox report_anonymously;
 
     EditText editTextScreenName;
-    
-    String email;
+
+    String login_email;
+    String fb_email;
+    String gmail;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,14 +56,38 @@ public class Resident_features_settings extends AppCompatActivity {
         boolean report_anonymouslyChecked = report_anonymously.isChecked();
 
         Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        email = bundle.getString("email");
 
-        Log.i(TAG, "onCreate: email = "+email);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        Toast.makeText(Resident_features_settings.this, "Email: "+email, Toast.LENGTH_SHORT).show();
+        if(sharedPreferences.getString("gmail_address",null)!=null) {
+            gmail = sharedPreferences.getString("gmail_address",null);
+            editTextScreenName.setText("");
 
-        editTextScreenName.setText(email);
+
+            editTextScreenName.setText(gmail);
+
+
+        } else if(sharedPreferences.getString("fb_address",null)!=null) {
+            fb_email = sharedPreferences.getString("fb_address",null);
+            editTextScreenName.setText("");
+
+            editTextScreenName.setText(fb_email);
+
+
+        } else if(sharedPreferences.getString("login_address",null)!=null) {
+            login_email = sharedPreferences.getString("login_address",null);
+            editTextScreenName.setText("");
+
+            editTextScreenName.setText(login_email);
+
+        }
+
+
+
+
+
+
+
 
     }
 
