@@ -386,7 +386,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 //                editor.commit();
 
                 Toast.makeText(MainActivity.this, "Signed in using google as: "+ googleAcc.getEmail(), Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(this,HomePage.class);
                 startActivity(intent);
 

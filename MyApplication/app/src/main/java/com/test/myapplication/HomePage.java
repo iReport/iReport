@@ -65,6 +65,10 @@ public class HomePage extends AppCompatActivity {
 
 
 
+        Log.i(TAG, "onCreate: latitude = "+sharedPreferences.getString("lat",null));
+
+
+
         Log.i(TAG, "onCreate: ");
 
         initializeViews();
