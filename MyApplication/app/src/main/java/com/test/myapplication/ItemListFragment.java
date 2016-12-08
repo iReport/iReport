@@ -16,13 +16,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.test.myapplication.DummyContent;
 
 public class ItemListFragment extends ListFragment {
-
+/*
     //Firebase Initialize
     private DatabaseReference mDatabase;
     private String mUserId;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
-
+*/
     /**
      * The serialization (saved instance state) Bundle key representing the
      * activated item position. Only used on tablets.
@@ -72,7 +72,7 @@ public class ItemListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),android.R.layout.simple_list_item_activated_1, android.R.id.text1, DummyContent.ITEMS));
-
+/*
         //Initialize Firebase Auth and Database Reference
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -82,7 +82,7 @@ public class ItemListFragment extends ListFragment {
            // MainActivity();
         } else {
             mUserId = mFirebaseUser.getUid();
-        }
+        }*/
         }
 
     @Override
