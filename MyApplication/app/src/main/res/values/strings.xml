@@ -9,6 +9,9 @@
     <string name="location_services_lat">location_services_lat</string>
     <string name="location_services_long">location_services_long</string>
     <string name="title_activity_resident__features">Resident_Features</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--
     <string name="app_name">My Application</string>
 -->

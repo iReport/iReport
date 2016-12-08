@@ -77,6 +77,13 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        buttonMyReports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePage.this,ItemListActivity.class);
+                startActivity(intent);
+            }
+        });
         Log.i(TAG, "onCreate: HOMEPAGE");
 
 

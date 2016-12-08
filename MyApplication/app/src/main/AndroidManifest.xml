@@ -26,11 +26,8 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
         </activity>
-
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -47,9 +44,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SignUp"></activity>
-
+        <activity android:name=".SignUp" />
         <activity android:name=".ReportLittering">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,20 +52,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".HomePage">
-            <!--intent-filter>
+
+            <!--
+            intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter-->
+            </intent-filter
+            -->
         </activity>
-
         <activity android:name=".Resident_features_settings">
             android:parentActivityName="com.test.myapplication.HomePage>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomePage" />
-            </activity>
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -79,6 +75,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDpOyiNBgswiJ4Wy0zjG7ZmUYgKs02E2YA" />
 
-</application>
+        <activity android:name=".ItemDetailActivity" />
+        <activity android:name=".ItemListActivity"></activity>
+    </application>
 
-    </manifest>
+</manifest>
