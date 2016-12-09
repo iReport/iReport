@@ -13,6 +13,8 @@ public class ItemListActivity extends AppCompatActivity implements ItemListFragm
      */
     private boolean mTwoPane;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

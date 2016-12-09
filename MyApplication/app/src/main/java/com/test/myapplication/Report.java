@@ -122,6 +122,14 @@ public class Report {
     public Report() {
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public String getLongitude() {
         return longitude;
     }
@@ -217,4 +225,12 @@ public class Report {
     public void setEmailId(String emailId) {
         this.emailId = emailId;
     }
+
+    @Override
+    public String toString(){
+        return (this.emailId);
+
+    }
+
+
 }

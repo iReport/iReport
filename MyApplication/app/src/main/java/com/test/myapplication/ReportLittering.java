@@ -79,6 +79,7 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
     String gmail;
 
     private DatabaseReference litterdatabase;
+    private DatabaseReference reportDatabase;
     private FirebaseAuth firebaseAuth;
 
 
@@ -123,6 +124,8 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
         firebaseAuth=FirebaseAuth.getInstance();
         litterdatabase = FirebaseDatabase.getInstance().getReference();
         firebaseAuth=FirebaseAuth.getInstance();
+
+        reportDatabase = litterdatabase.child("report");
 //        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         if(sharedPreferences.getString("gmail_address",null)!=null) {
@@ -221,7 +224,7 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
 //                litterdatabase.push().setValue(street.getText().toString());
                 //litterdatabase.push().setValue(report1);
 
-                litterdatabase.push().setValue(report2);
+                reportDatabase.push().setValue(report2);
 //                public Report(String longitude, String latitude, String street, String description, Drawable image) {
 
 

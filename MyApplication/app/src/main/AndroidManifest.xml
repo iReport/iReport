@@ -76,9 +76,15 @@
             android:value="AIzaSyDpOyiNBgswiJ4Wy0zjG7ZmUYgKs02E2YA" />
 
         <activity android:name=".ItemDetailActivity" />
-        <activity android:name=".ItemListActivity"></activity>
+        <activity android:name=".ItemListActivity">
+
+        </activity>
 
         <activity android:name=".OfficialActivity" />
+
+        <activity android:name=".OfficialDetail" />
+
+
 
     </application>
 
