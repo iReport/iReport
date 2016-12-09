@@ -272,7 +272,7 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
                 editor.putString("img",imageView.getDrawable().toString());
                 editor.commit();
 
-                //finish();
+                finish();
 
 
 

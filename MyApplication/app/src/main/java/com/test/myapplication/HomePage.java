@@ -195,6 +195,12 @@ public class HomePage extends AppCompatActivity {
 
             finish();
         }
+        if (id == R.id.maps) {
+
+            Intent i = new Intent(getApplicationContext(),MapsActivity.class);
+            startActivity(i);
+            finish();
+        }
 
         return super.onOptionsItemSelected(item);
     }
