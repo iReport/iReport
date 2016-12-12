@@ -160,9 +160,6 @@ public class Resident_features_settings extends AppCompatActivity {
 //                myRef.child("users").push({"firstName": firstname, "lastName": lastname , "homeAddress": address});
             }
         });
-
-
-
     }
 
     public void onCheckboxClicked(View view) {

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,6 +56,13 @@ public class OfficialDetail extends AppCompatActivity {
             textViewDescription.setText(intent.getStringExtra("descrip_of"));
             textViewSeverity.setText(intent.getStringExtra("severity_of"));
             textViewSize.setText(intent.getStringExtra("size_of"));
+
+
+            byte[] decodedString = Base64.decode(intent.getStringExtra("img_of"), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            imgView.setImageBitmap(decodedByte);
+
+//            imgView.setImageDrawable(intent.get);
 //            textView.setText(intent.getStringExtra("street_of"));
 
 //            Bitmap bitmap = BitmapFactory.decodeResource(get)

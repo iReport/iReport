@@ -67,7 +67,31 @@ public class Report {
         this.emailId = emailId;
     }
 
+//    Report report2 = new Report(longi.getText().toString(),lat.getText().toString(),street.getText().toString(),radioButtonSeverityLevel.getText().toString(),b64Image,radioButtonSize.getText().toString(),editTextDescription.getText().toString(),gmail);
+
+
     public Report(String longitude, String latitude, String street, String severity, String img, String size, String description, String emailId) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.street = street;
+        //this.currentstatus = currentstatus;
+        this.severity = severity;
+        this.img = img;
+        this.image = image;
+        this.size = size;
+        this.description = description;
+        this.emailId = emailId;
+    }
+
+//    public Report(String longitude, String latitude, String street, Drawable image, String description) {
+//        this.longitude = longitude;
+//        this.latitude = latitude;
+//        this.street = street;
+//        this.image = image;
+//        this.description = description;
+//    }
+
+    public Report(String longitude, String latitude, String street, String severity, Drawable image, String size, String description, String emailId) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.street = street;
@@ -77,14 +101,6 @@ public class Report {
         this.size = size;
         this.description = description;
         this.emailId = emailId;
-    }
-
-    public Report(String longitude, String latitude, String street, Drawable image, String description) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.street = street;
-        this.image = image;
-        this.description = description;
     }
 
 

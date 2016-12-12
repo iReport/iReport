@@ -1,6 +1,7 @@
 package com.test.myapplication;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +43,9 @@ public class OfficialActivity extends AppCompatActivity {
 
     Report value;
 
+    Bitmap bitmap;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,12 +63,21 @@ public class OfficialActivity extends AppCompatActivity {
 
         mRef = dRef.child("report");
 
-
-        arrayAdapter = new ArrayAdapter<Report>(this,android.R.layout.simple_list_item_1, reportArrayList);
         mListView = (ListView) findViewById(R.id.listView);
 
 
-        mListView.setAdapter(arrayAdapter);
+        final CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(OfficialActivity.this, reportArrayList);
+
+        mListView.setAdapter(customBaseAdapter);
+
+
+
+
+//        arrayAdapter = new ArrayAdapter<Report>(this,android.R.layout.simple_list_item_1, reportArrayList);
+//
+//
+//        mListView.setAdapter(arrayAdapter);
+
 
 
 
@@ -89,7 +103,9 @@ public class OfficialActivity extends AppCompatActivity {
 
 //                reportArrayList.get(0).getEmailId();
 
-                arrayAdapter.notifyDataSetChanged();
+                customBaseAdapter.notifyDataSetChanged();
+
+//                arrayAdapter.notifyDataSetChanged();
 
 
             }
@@ -134,6 +150,9 @@ public class OfficialActivity extends AppCompatActivity {
 //                public List<User> user;
 //                public String emailId;
 
+
+
+
                 Intent intent = new Intent(OfficialActivity.this,OfficialDetail.class);
                 intent.putExtra("email_of",reportArrayList.get(i).getEmailId());
                 intent.putExtra("long_of",reportArrayList.get(i).getLongitude());
@@ -142,7 +161,29 @@ public class OfficialActivity extends AppCompatActivity {
                 intent.putExtra("severity_of",reportArrayList.get(i).getSeverity());
                 intent.putExtra("descrip_of",reportArrayList.get(i).getDescription());
                 intent.putExtra("street_of",reportArrayList.get(i).getStreet());
+
+
+//                ByteArrayOutputStream bs = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.PNG,50,bs);
+//
+//
+//
                 intent.putExtra("img_of",reportArrayList.get(i).getImg());
+
+//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream); // 'bitmap' is the image returned
+//                byte[] b = stream.toByteArray();
+
+//                String b64Image = Base64.encodeToString(b, Base64.DEFAULT);
+
+
+
+//                Intent _intent = new Intent(this, newscreen.class);
+//                Bitmap _bitmap; // your bitmap
+//                ByteArrayOutputStream _bs = new ByteArrayOutputStream();
+//                _bitmap.compress(Bitmap.CompressFormat.PNG, 50, _bs);
+//                i.putExtra("byteArray", _bs.toByteArray());
+//                startActivity(i);
 
                 startActivity(intent);
 

@@ -178,10 +178,10 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
 
 //                imageView.getDrawable();
 
-                Report report = new Report(lat.getText().toString(),longi.getText().toString(),street.getText().toString(),
-                        imageView.getDrawable(),editTextDescription.getText().toString());
-
-                list.add(report);
+//                Report report = new Report(lat.getText().toString(),longi.getText().toString(),street.getText().toString(),
+//                        imageView.getDrawable(),editTextDescription.getText().toString());
+//
+//                list.add(report);
 
 //                ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream); // 'bitmap' is the image returned
@@ -196,10 +196,22 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream); // 'bitmap' is the image returned
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream); // 'bitmap' is the image returned
                 byte[] b = stream.toByteArray();
 
                 String b64Image = Base64.encodeToString(b, Base64.DEFAULT);
+
+//                public void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
+//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+//                    String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+//                    DatabaseReference ref = FirebaseDatabase.getInstance()
+//                            .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
+//                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                            .child(mRestaurant.getPushId())
+//                            .child("imageUrl");
+//                    ref.setValue(imageEncoded);
+//                }
 
 
                 Log.i(TAG, "onClick: street = "+street.getText().toString());
@@ -207,10 +219,12 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
 //                public Report(String longitude, String latitude, String street, String img, String description, String emailId) {
 
 
-                   // Report report1 = new Report(longi.getText().toString(),lat.getText().toString(),street.getText().toString(),b64Image,editTextDescription.getText().toString(),gmail);
+//                    Report report1 = new Report(longi.getText().toString(),lat.getText().toString(),street.getText().toString(),b64Image,editTextDescription.getText().toString(),gmail);
  
                 Report report2 = new Report(longi.getText().toString(),lat.getText().toString(),street.getText().toString(),radioButtonSeverityLevel.getText().toString(),b64Image,radioButtonSize.getText().toString(),editTextDescription.getText().toString(),gmail);
 
+
+//                Report report3 = new Report(longi.getText().toString(),lat.getText().toString(),street.getText().toString(),radioButtonSeverityLevel.getText().toString(),/*b64Image*/imageView.getDrawable(),radioButtonSize.getText().toString(),editTextDescription.getText().toString(),gmail);
 
 
 
@@ -223,6 +237,13 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
 
 //                litterdatabase.push().setValue(street.getText().toString());
                 //litterdatabase.push().setValue(report1);
+
+//                DatabaseReference ref = FirebaseDatabase.getInstance()
+//                            .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
+//                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                            .child(mRestaurant.getPushId())
+//                            .child("imageUrl");
+//                    ref.setValue(imageEncoded);
 
                 reportDatabase.push().setValue(report2);
 //                public Report(String longitude, String latitude, String street, String description, Drawable image) {
@@ -303,6 +324,9 @@ public class ReportLittering extends AppCompatActivity implements GoogleApiClien
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//            encodeBitmapAndSaveToFirebase(imageBitmap);
+
+
         }
     }
 
