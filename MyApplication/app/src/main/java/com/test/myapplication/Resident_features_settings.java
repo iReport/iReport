@@ -132,13 +132,15 @@ public class Resident_features_settings extends AppCompatActivity {
                 lastname=editTextLastName.getText().toString();
                 address=editTextHomeaddress.getText().toString();
 
-                User person = new User(firstname,lastname,editTextScreenName.getText().toString(),null,address);
+//                User person = new User(firstname,lastname,editTextScreenName.getText().toString(),null,address);
                 FirebaseUser user= firebaseAuth.getCurrentUser();
 //                mDatabase.child(user.getUid()).setValue(person);
 
-                User user1 = new User(firstname,lastname,editTextScreenName.getText().toString(),address);
 
 
+                User user1 = new User(firstname,lastname,editTextScreenName.getText().toString(),address,email_confirmation.getText().toString(),email_notification.getText().toString());
+
+//                email_confirmation.getText().toString()
 
                 Log.i(TAG, "onClick: first Name = "+firstname);
 

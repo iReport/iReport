@@ -15,7 +15,8 @@
             android:id="@+id/custom_image"
             android:src="@drawable/logo"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -24,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmallPopupMenu"
             android:text="Small Text"
             android:id="@+id/custom_title"
             android:layout_toLeftOf="@+id/custom_image"
@@ -33,10 +34,20 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="49dp"
-            android:layout_marginEnd="49dp" />
+            android:layout_marginRight="45dp"
+            android:layout_marginEnd="28dp" />
+
+
 
 
     </RelativeLayout>
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Some description about the litter"-->
+        <!--android:id="@+id/textView8"-->
+        <!--android:textAppearance="?android:attr/textAppearanceSmallPopupMenu"-->
+        <!--android:layout_gravity="center_horizontal" />-->
 
 </LinearLayout>

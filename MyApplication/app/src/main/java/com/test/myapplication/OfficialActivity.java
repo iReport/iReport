@@ -45,6 +45,8 @@ public class OfficialActivity extends AppCompatActivity {
 
     Bitmap bitmap;
 
+    String currentUserEmail;
+
 
 
     @Override
@@ -153,14 +155,23 @@ public class OfficialActivity extends AppCompatActivity {
 
 
 
+
+
                 Intent intent = new Intent(OfficialActivity.this,OfficialDetail.class);
-                intent.putExtra("email_of",reportArrayList.get(i).getEmailId());
-                intent.putExtra("long_of",reportArrayList.get(i).getLongitude());
-                intent.putExtra("lat_of",reportArrayList.get(i).getLatitude());
-                intent.putExtra("size_of",reportArrayList.get(i).getSize());
-                intent.putExtra("severity_of",reportArrayList.get(i).getSeverity());
-                intent.putExtra("descrip_of",reportArrayList.get(i).getDescription());
-                intent.putExtra("street_of",reportArrayList.get(i).getStreet());
+
+                currentUserEmail = "spurshujjawal@gmail.com";
+
+                if(reportArrayList.get(i).getEmailId().equals(currentUserEmail)) {
+                    intent.putExtra("email_of", reportArrayList.get(i).getEmailId());
+                    intent.putExtra("long_of", reportArrayList.get(i).getLongitude());
+                    intent.putExtra("lat_of", reportArrayList.get(i).getLatitude());
+                    intent.putExtra("size_of", reportArrayList.get(i).getSize());
+                    intent.putExtra("severity_of", reportArrayList.get(i).getSeverity());
+                    intent.putExtra("descrip_of", reportArrayList.get(i).getDescription());
+                    intent.putExtra("street_of", reportArrayList.get(i).getStreet());
+                    intent.putExtra("img_of",reportArrayList.get(i).getImg());
+
+                }
 
 
 //                ByteArrayOutputStream bs = new ByteArrayOutputStream();
@@ -168,7 +179,6 @@ public class OfficialActivity extends AppCompatActivity {
 //
 //
 //
-                intent.putExtra("img_of",reportArrayList.get(i).getImg());
 
 //                ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream); // 'bitmap' is the image returned

@@ -17,6 +17,10 @@ public class User {
     //public String userid;
     public String useremail;
     public String address;
+    public String emailConfirmation;
+    public String emailNotification;
+    public String residentAnonymous;
+
 
     public List<Report> reportList;
 
@@ -29,12 +33,20 @@ public class User {
         this.address = address;
     }
 
-    public User(String firstname, String lastname, String useremail, String address) {
+    public User(String firstname, String lastname, String useremail, String address, String emailConfirmation, String emailNotification) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.useremail = useremail;
         this.address = address;
+        this.emailNotification = emailNotification;
+        this.emailConfirmation = emailConfirmation;
     }
+
+
+
+
+
+
 
     public User() {
     }

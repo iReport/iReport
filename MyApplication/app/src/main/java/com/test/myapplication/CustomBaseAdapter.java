@@ -31,6 +31,9 @@ public class CustomBaseAdapter extends BaseAdapter {
     private Context context;
     private ViewHolder viewHolder;
 
+    String currentUserEmail;
+
+
     DatabaseReference mRef;
     DatabaseReference dRef;
 
@@ -71,14 +74,22 @@ public class CustomBaseAdapter extends BaseAdapter {
         }
 
         Report report = reportArrayList.get(i);
-        viewHolder.textViewTitle.setText(report.getEmailId());
+
+        currentUserEmail = "spurshujjawal@gmail.com";
+
+        if(report.getEmailId().equals(currentUserEmail)) {
+
+
+            viewHolder.textViewTitle.setText(report.getEmailId());
 //        viewHolder.imageView.setImageDrawable(reportArrayList.get(i).getImage());
 //        viewHolder.imageView.setImageResource(R.drawable.logo);
 
 
-        byte[] decodedString = Base64.decode(report.getImg(), Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        viewHolder.imageView.setImageBitmap(decodedByte);
+            byte[] decodedString = Base64.decode(report.getImg(), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            viewHolder.imageView.setImageBitmap(decodedByte);
+
+        }
 
 //        Bundle extras = data.getExtras();
 //        Bitmap imageBitmap = (Bitmap) extras.get("data");
