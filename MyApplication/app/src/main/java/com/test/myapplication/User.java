@@ -33,12 +33,12 @@ public class User {
         this.address = address;
     }
 
-    public User(String firstname, String lastname, String useremail, String address, String emailConfirmation, String emailNotification) {
+    public User(String firstname, String lastname, String useremail, String address, String emailConfirmation/*, String emailNotification*/) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.useremail = useremail;
         this.address = address;
-        this.emailNotification = emailNotification;
+//        this.emailNotification = emailNotification;
         this.emailConfirmation = emailConfirmation;
     }
 

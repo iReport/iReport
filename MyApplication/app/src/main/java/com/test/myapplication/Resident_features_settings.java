@@ -55,6 +55,8 @@ public class Resident_features_settings extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private DatabaseReference userDatabase;
 
+    boolean checked;
+
 
 
     @Override
@@ -138,14 +140,30 @@ public class Resident_features_settings extends AppCompatActivity {
 
 
 
-                User user1 = new User(firstname,lastname,editTextScreenName.getText().toString(),address,email_confirmation.getText().toString(),email_notification.getText().toString());
+                if (checked)
+                {
+                    User user1 = new User(firstname,lastname,editTextScreenName.getText().toString(),address,"yes");
+                    userDatabase.push().setValue(user1);
+
+                }
+                else
+                {
+
+                    User user1 = new User(firstname,lastname,editTextScreenName.getText().toString(),address,"no");
+                    userDatabase.push().setValue(user1);
+
+
+                }
+
+
+//                User user1 = new User(firstname,lastname,editTextScreenName.getText().toString(),address,email_confirmation.getText().toString(),email_notification.getText().toString());
 
 //                email_confirmation.getText().toString()
 
                 Log.i(TAG, "onClick: first Name = "+firstname);
 
 
-                userDatabase.push().setValue(user1);
+//                userDatabase.push().setValue(user1);
 
 //                mDatabase.push().setValue(person);
 
@@ -166,7 +184,7 @@ public class Resident_features_settings extends AppCompatActivity {
 
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
+        checked = ((CheckBox) view).isChecked();
 
         // Check which checkbox was clicked
         switch(view.getId()) {
